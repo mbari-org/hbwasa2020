@@ -1,0 +1,29 @@
+site_name: Humpback Whale Song Analysis Based on Automatic Classification Performance
+site_author: Carlos A. Rueda and John P. Ryan
+theme: "material"
+
+extra_css:
+  - css/my.css
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - footnotes
+  - toc:
+      permalink: True
+
+nav:
+  - Abstract: index.md
+  - Overview: overview.md
+  - Methods: methods.md
+  - Feature Extraction: features.md
+  - Classification: classification.md
+  - Results: results.md
+  - Summary and Conclusions: conclusions.md
+  - References: references.md
