@@ -4,6 +4,7 @@ at the
 [ASA Acoustics Virtually Everywhere](https://asa_ave20.vfairs.com/)
 conference
 on Dec 9, 2020.
+Resulting site at <https://mbari-org.github.io/hbwasa2020/>
 
 ---
 
