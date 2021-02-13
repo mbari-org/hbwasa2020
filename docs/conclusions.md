@@ -2,7 +2,7 @@
 
 - Based on classification performance,
   we empirically determined some potentially good values for signal processing parameters:
-  LPC order: 80–120; Window analysis size: 45–120ms; Window offset: 15ms.
+  LPC order: 80-120; Window analysis size: 45-120ms; Window offset: 15ms.
 
 - The resulting levels of classification accuracy, ranging between 88% and 94%, are encouraging.
 
@@ -17,12 +17,12 @@
   incorporate time dependency as well as a baseline to compare results against
   other methods, in particular the HMM.
 
-- The HMM model consistently provided the best performance among the probabilistic models, 
+- The HMM model consistently provided the best performance among the probabilistic models,
   though just slightly better than Naive Bayes. This is likely due to overfitting,
   especially given the small size of the dataset, as well as the limited power of
   using discrete observation distributions [7].
 
-## Conclusion and Future Work
+## Conclusion and Future Work
 
 The scale of the work described here is admittedly limited in terms of the labelling
 itself still being preliminary and the analysis done on segments extracted from a small,
@@ -33,9 +33,9 @@ refining the methods. Our future efforts include:
 - Larger scale model training and tuning
 - Gaining more insights toward a definition of building blocks for charaterization of
    humpback whale song structure
-- Inclusion of additional features from the signal analysis
-  (e.g., cepstral related coefficients), 
-  and use of HMM with continuous observation densities (e.g., Gaussian Mixture Models)
+- Inclusion of additional features from the signal analysis
+  (e.g., cepstral related coefficients),
+  and use of HMM with continuous observation densities (e.g., Gaussian Mixture Models)
 - Automated segmentation toward an operational use of the classification techiques
 
 
