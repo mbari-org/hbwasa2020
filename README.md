@@ -15,5 +15,5 @@ Setup
 
 Publishing
 
-I initially set up a github action ... 
+I initially set up a github action ...
 but ended up just running: `mkdocs gh-deploy --force`
