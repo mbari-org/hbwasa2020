@@ -86,7 +86,7 @@ and an associated observed sequence:[^notation]
 
 ## Markov Chain
 
-A first-order Markov chain model (MM) allows us to start incorporating 
+A first-order Markov chain model (MM) allows us to start incorporating
 a time dependency in the observed sequences [6]. 
 In this model, for a given sequence, each observed symbol corresponds
 to a state of the system, and the probability of
