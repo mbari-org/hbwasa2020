@@ -13,8 +13,8 @@ Resulting site at:
 
 Setup
 
-      pip install mkdocs
-      pip install mkdocs-material
+      pip install [--user] mkdocs
+      pip install [--user] mkdocs-material
 
 Publishing
 
