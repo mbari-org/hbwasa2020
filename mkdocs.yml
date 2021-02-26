@@ -1,6 +1,8 @@
 site_name: Humpback Whale Song Analysis Based on Automatic Classification Performance
 site_author: Carlos A. Rueda and John P. Ryan
-theme: "material"
+theme:
+  name: material
+  logo: https://docs.mbari.org/imgs/mbari-logo.png
 
 extra_css:
   - css/my.css
