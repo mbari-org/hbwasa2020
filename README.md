@@ -6,17 +6,18 @@ conference
 on Dec 9, 2020.
 Resulting site available at:
 
-- <https://mbari-org.github.io/hbwasa2020/>
 - <https://docs.mbari.org/hbwasa2020/>
+- <https://mbari-org.github.io/hbwasa2020/>
 
 ---
 
-Setup
+**Setup**
 
       pip install [--user] mkdocs
       pip install [--user] mkdocs-material
 
-Publishing
+**Publishing**
 
-I initially set up a github action ...
+- Using MBARI Doc-gen system
+- For the site at GitHub. I initially set up a github action ...
 but ended up just running: `mkdocs gh-deploy --force`
