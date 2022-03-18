@@ -1,0 +1,655 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Carlos A. Rueda and John P. Ryan">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>Classification - Humpback Whale Song Analysis Based on Automatic Classification Performance</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/my.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#classification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Humpback Whale Song Analysis Based on Automatic Classification Performance" class="md-header__button md-logo" aria-label="Humpback Whale Song Analysis Based on Automatic Classification Performance" data-md-component="logo">
+      
+  <img src="https://docs.mbari.org/imgs/mbari-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Humpback Whale Song Analysis Based on Automatic Classification Performance
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Classification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Humpback Whale Song Analysis Based on Automatic Classification Performance" class="md-nav__button md-logo" aria-label="Humpback Whale Song Analysis Based on Automatic Classification Performance" data-md-component="logo">
+      
+  <img src="https://docs.mbari.org/imgs/mbari-logo.png" alt="logo">
+
+    </a>
+    Humpback Whale Song Analysis Based on Automatic Classification Performance
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Abstract
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        Feature Extraction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Classification
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Classification
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vq-based-classification" class="md-nav__link">
+    VQ Based Classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naive-bayes" class="md-nav__link">
+    Naive Bayes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-chain" class="md-nav__link">
+    Markov Chain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hidden-markov-modeling" class="md-nav__link">
+    Hidden Markov Modeling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../results/" class="md-nav__link">
+        Results
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        Summary and Conclusions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vq-based-classification" class="md-nav__link">
+    VQ Based Classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naive-bayes" class="md-nav__link">
+    Naive Bayes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-chain" class="md-nav__link">
+    Markov Chain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hidden-markov-modeling" class="md-nav__link">
+    Hidden Markov Modeling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="classification">Classification<a class="headerlink" href="#classification" title="Permanent link">&para;</a></h1>
+<h2 id="vq-based-classification">VQ Based Classification<a class="headerlink" href="#vq-based-classification" title="Permanent link">&para;</a></h2>
+<p>Along with the probabilistic methods (see below),
+and as a means to further evaluate the clustering/VQ mechanisms,
+we also include a classification method
+based on the quantization distortion measure.</p>
+<ul>
+<li>
+<p><strong>VQ Learning</strong>: 
+  A codebook <span class="arithmatex">\(C^{(u)}\)</span> is generated for each class <span class="arithmatex">\(u\)</span> 
+  using the designated training instances <span class="arithmatex">\(\{a\}\)</span> for that class.</p>
+</li>
+<li>
+<p><strong>VQ Classification</strong>: 
+  Classification of a particular unit instance 
+  <span class="arithmatex">\(a = \langle a_1, \ldots, a_T \rangle\)</span> 
+  is given by the trained codebook that gets
+  the minimum average distortion in the quantization of <span class="arithmatex">\(a\)</span>: </p>
+<div class="arithmatex">\[
+u^* = \operatorname{argmin}\limits_{u=1}^U d(a, C^{(u)})
+\]</div>
+<p>where <span class="arithmatex">\(d(a, C^{(u)})\)</span> is defined as the average quantization distortion
+over the vectors in <span class="arithmatex">\(a\)</span> when using <span class="arithmatex">\(C^{(u)}\)</span>.</p>
+</li>
+</ul>
+<p><strong>Probabilistic methods</strong></p>
+<p>In each of the methods below, by using the training data in a supervised manner,
+we generate a set of models
+<span class="arithmatex">\(H = \{h_1, \ldots, h_R\}\)</span>, one model for each class such that the 
+model <span class="arithmatex">\(h_r\)</span> learns to recognize <span class="arithmatex">\(u_r\)</span> instances in a probabilistic sense.
+Subsequently, given a song unit instance <span class="arithmatex">\(o\)</span>, we find its most probable 
+<span class="arithmatex">\(h* \in H\)</span>, that is, <span class="arithmatex">\(h* = \operatorname{argmax}_h P[h|o]\)</span>,
+as the rule for classification [5, 6]. 
+By using Bayes' formula and assuming <span class="arithmatex">\(P[h]\)</span> equiprobable
+-in other words, by using a maximum likelihood criterium-
+the classification of <span class="arithmatex">\(o\)</span> is then given by <span class="arithmatex">\(h* = \operatorname{argmax}_h P[o|h]\)</span>.</p>
+<p><em>Note</em>: In these methods, the underlying codebooks for quantization are those
+generated with all training song unit instances regardless of class.</p>
+<h2 id="naive-bayes">Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permanent link">&para;</a></h2>
+<p>The Naive Bayes (NB) classifier is a simple method shown to be
+quite effective in many practical applications [5].
+Its core underlying assumption is that the observed symbols for
+a class are independent from each other.</p>
+<p>A Naive Bayes model is defined by:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span>: Number of attributes (observable symbols)</li>
+<li><span class="arithmatex">\(\pi\)</span>: Observation probability distribution</li>
+</ul>
+<p>Example of a model with 3 observable symbols <span class="arithmatex">\(\{s_1, s_2, s_3\}\)</span>
+and an associated observed sequence:<sup id="fnref:notation"><a class="footnote-ref" href="#fn:notation">1</a></sup></p>
+<p><img alt="" src="../res/nb-model-and-sequence.png" /></p>
+<ul>
+<li>
+<p><strong>NB Learning</strong>: A model for class <span class="arithmatex">\(u\)</span> is generated with the designated training observation
+  sequences using an <span class="arithmatex">\(m\)</span>-estimate (pseudocounts) to determine the <span class="arithmatex">\(\pi\)</span> distribution [5].
+  Each element of the distribution is determined as:</p>
+<div class="arithmatex">\[
+\pi_m^{(u)} \gets \frac{n_m + 1}{n + M}
+\]</div>
+<p>where <span class="arithmatex">\(n_m\)</span> is the number of quantized symbols equal to <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(n\)</span> is the total number
+of symbols across all training sequence from class <span class="arithmatex">\(u\)</span>.</p>
+</li>
+<li>
+<p><strong>NB Classification</strong>: The probability of a sequence <span class="arithmatex">\(o\)</span> given <span class="arithmatex">\(a\)</span> model is: </p>
+<div class="arithmatex">\[
+    P[o | \pi^{(u)}]
+      =
+        \prod\limits_{t=1}^T P[o_t\ |\ \pi^{(u)}]
+      =
+        \prod\limits_{t=1}^T \pi_{o_t}^{(u)}
+\]</div>
+<p>With this, as indicated above, we use a maximum likelihood criterium for classification:</p>
+<div class="arithmatex">\[
+u^* = \operatorname{argmax}_u \prod\limits_{t=1}^T \pi_{o_t}^{(u)}
+\]</div>
+</li>
+</ul>
+<h2 id="markov-chain">Markov Chain<a class="headerlink" href="#markov-chain" title="Permanent link">&para;</a></h2>
+<p>A first-order Markov chain model (MM) allows us to start incorporating
+a time dependency in the observed sequences [6].
+In this model, for a given sequence, each observed symbol corresponds
+to a state of the system, and the probability of
+observing a particular symbol at time <span class="arithmatex">\(t\)</span>
+only depends on the symbol observed at time <span class="arithmatex">\(t - 1\)</span>.</p>
+<p>A Markov Chain model is defined by:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span>: Number of states (observable symbols in our case)</li>
+<li><span class="arithmatex">\(\pi\)</span>: Initial state probability distribution</li>
+<li><span class="arithmatex">\(a\)</span>: State probability distributions</li>
+</ul>
+<p>Example of a model with 2 observable symbols <span class="arithmatex">\(\{s_1, s_2\}\)</span>
+and an associated observed sequence:</p>
+<p><img alt="" src="../res/mm-model-and-sequence.png" /></p>
+<ul>
+<li>
+<p><strong>MM Learning</strong>: Basically done as with NB learning,
+  here we also use pseudocounts to determine
+  the <span class="arithmatex">\(\pi\)</span> and <span class="arithmatex">\(a\)</span> distributions based on the given training sequences.</p>
+</li>
+<li>
+<p><strong>MM Classification</strong>: With <span class="arithmatex">\(\mathcal{M} = (\pi, a)\)</span> denoting a Markov chain model,
+  the probability of a sequence <span class="arithmatex">\(o\)</span> given <span class="arithmatex">\(\mathcal{M}\)</span> is:</p>
+<div class="arithmatex">\[
+P[o|\mathcal{M}] =
+  \pi_{o_1} \prod\limits_{t=1}^{T-1} a_{o_t, o_{t+1}}
+\]</div>
+<p>which we use for our maximum likelihoodclassification:</p>
+<div class="arithmatex">\[
+u^* = \operatorname{argmax}_u P[o | \mathcal{M}^{(u)}]
+\]</div>
+</li>
+</ul>
+<h2 id="hidden-markov-modeling">Hidden Markov Modeling<a class="headerlink" href="#hidden-markov-modeling" title="Permanent link">&para;</a></h2>
+<p>In HMM, states no longer represent the observable elements of the
+underlying stochastic process as in the Markov chain case.
+They are now hidden random variables on which
+output symbols are defined as probabilistic functions [7-9].
+In this study we use discrete observation distributions.</p>
+<p>An HMM model is defined by:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span>, <span class="arithmatex">\(M\)</span>: Number of states and symbols</li>
+<li><span class="arithmatex">\(\pi\)</span>: Initial state probability distribution</li>
+<li><span class="arithmatex">\(a\)</span>: State probability distributions</li>
+<li><span class="arithmatex">\(b\)</span>: Observation symbol distributions</li>
+</ul>
+<p>Example of a model with <span class="arithmatex">\(N = 2\)</span> states <span class="arithmatex">\(\{s_1, s_2\}\)</span>
+and <span class="arithmatex">\(M = 3\)</span> symbols <span class="arithmatex">\(\{v_1, v_2, v_3\}\)</span>,
+and an associated observed sequence:</p>
+<p><img alt="" src="../res/hmm-model-and-sequence.png" /></p>
+<ul>
+<li>
+<p><strong>HMM Learning</strong>: Implemented via the Baum-Welch algorithm [7].</p>
+</li>
+<li>
+<p><strong>HMM Classification</strong>: With <span class="arithmatex">\(\lambda = (\pi, a, b)\)</span> denoting an HMM,
+  the key operation is to compute <span class="arithmatex">\(P[o|\lambda]\)</span>,
+  the probablity of a sequence given <span class="arithmatex">\(\lambda\)</span>.
+  For this we use the forward-backward algorithm [7].
+  Once again, we use a maximum likelihood decision rule:</p>
+<div class="arithmatex">\[
+u^* = \operatorname{argmax}_u P[o | \lambda^{(u)}]
+\]</div>
+</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:notation">
+<p>Arrow notation used here and in the following: dashed lines originating from a node represent probabilities defining a particular distribution; and filled lines represent the ocurrence of a particular event according to the distribution indicated in the label.&#160;<a class="footnote-backref" href="#fnref:notation" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../features/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Feature Extraction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Feature Extraction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../results/" class="md-footer__link md-footer__link--next" aria-label="Next: Results" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Results
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

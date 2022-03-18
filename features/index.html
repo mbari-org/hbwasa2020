@@ -1,0 +1,537 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Carlos A. Rueda and John P. Ryan">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>Feature Extraction - Humpback Whale Song Analysis Based on Automatic Classification Performance</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/my.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#feature-extraction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Humpback Whale Song Analysis Based on Automatic Classification Performance" class="md-header__button md-logo" aria-label="Humpback Whale Song Analysis Based on Automatic Classification Performance" data-md-component="logo">
+      
+  <img src="https://docs.mbari.org/imgs/mbari-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Humpback Whale Song Analysis Based on Automatic Classification Performance
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Feature Extraction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Humpback Whale Song Analysis Based on Automatic Classification Performance" class="md-nav__button md-logo" aria-label="Humpback Whale Song Analysis Based on Automatic Classification Performance" data-md-component="logo">
+      
+  <img src="https://docs.mbari.org/imgs/mbari-logo.png" alt="logo">
+
+    </a>
+    Humpback Whale Song Analysis Based on Automatic Classification Performance
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Abstract
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Methods
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Feature Extraction
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Feature Extraction
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linear-predictive-coding-and-vector-quantization" class="md-nav__link">
+    Linear Predictive Coding and Vector Quantization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codebook-generation-and-evaluation" class="md-nav__link">
+    Codebook Generation and Evaluation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantization-example" class="md-nav__link">
+    Quantization example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classification/" class="md-nav__link">
+        Classification
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../results/" class="md-nav__link">
+        Results
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        Summary and Conclusions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        References
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linear-predictive-coding-and-vector-quantization" class="md-nav__link">
+    Linear Predictive Coding and Vector Quantization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codebook-generation-and-evaluation" class="md-nav__link">
+    Codebook Generation and Evaluation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantization-example" class="md-nav__link">
+    Quantization example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="feature-extraction">Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permanent link">&para;</a></h1>
+<h2 id="linear-predictive-coding-and-vector-quantization">Linear Predictive Coding and Vector Quantization<a class="headerlink" href="#linear-predictive-coding-and-vector-quantization" title="Permanent link">&para;</a></h2>
+<p>We use linear predictive coding (LPC) [2, 3] for feature extraction.
+The predictive vectors arising from this analysis are then quantized [4]
+for the statistical modeling. This analysis is applied to consecutive,
+overlapping time windows where the signal in each window is assumed to
+be approximately stationary. The LPC analysis on a window <span class="arithmatex">\(x_t\)</span> results in
+a vector <span class="arithmatex">\(a_t\)</span>, which in turn is quantized into a symbol from a codebook
+of size <span class="arithmatex">\(M\)</span>.
+Represented as such symbol sequences, we model the set of song unit
+instances in a probabilistic manner.</p>
+<p><img alt="" src="../res/lpc-vq.png" /></p>
+<p>The LPC and VQ relevant parameters that we investigate are:</p>
+<ul>
+<li><span class="arithmatex">\(P\)</span>:  Order of prediction (length of each vector <span class="arithmatex">\(a_t\)</span>)</li>
+<li><span class="arithmatex">\(W\)</span>:  Analysis window size (duration of each <span class="arithmatex">\(x_t\)</span>)</li>
+<li><span class="arithmatex">\(O\)</span>:  Analysis window offset</li>
+<li><span class="arithmatex">\(M\)</span>:  Codebook size (number of observable symbols)</li>
+</ul>
+<h2 id="codebook-generation-and-evaluation">Codebook Generation and Evaluation<a class="headerlink" href="#codebook-generation-and-evaluation" title="Permanent link">&para;</a></h2>
+<p>To support the vector quantization step, we run a variant of the
+<span class="arithmatex">\(k\)</span>-means algorithm for clustering where an LPC based measure of
+distance (distortion) is used [4]. We generate codebooks of various
+sizes and evaluate the following metrics:</p>
+<p><img alt="" src="../res/cb-evaluation.png" /></p>
+<p>where <span class="arithmatex">\(d(a, b)\)</span> is the distance or distortion between two LPC vectors,
+<span class="arithmatex">\(A\)</span> is the set of training vectors, <span class="arithmatex">\(M\)</span> is the size of the codebook,
+and <span class="arithmatex">\(c_m\)</span> are the centroids of the codebook. The plot in the right-hand
+side of the figure above -captured from one of the runs we performed-
+shows the typical behaviour of these metrics as functions of the codebook size <span class="arithmatex">\(M\)</span>.</p>
+<h2 id="quantization-example">Quantization example<a class="headerlink" href="#quantization-example" title="Permanent link">&para;</a></h2>
+<p>The following is the visualization of a quantization example using
+a codebook of size <span class="arithmatex">\(M = 512\)</span> on a ~18s interval:</p>
+<p><img alt="" src="../res/spectrogram_and_quantization_M_512_1h55m1.162s_18.038s_no_distortion.png" />
+<audio src="../res/selection_1h55m_18s.mp3" preload controls></audio></p>
+<p>The figure shows:</p>
+<ul>
+<li>Spectrogram of the selected interval.</li>
+<li>Corresponding assigned codeword per time window
+  displayed with an arbitrary color mapping.</li>
+<li>The window offset used was 15ms resulting in about 1200
+  windows for this interval. (Window size is 45ms.)</li>
+<li>Qualitatively, although not strictly required, we expect to see similarly
+  colored areas when comparing regions with similar acoustic content, as seems
+  to be well illustrated in the example above. (In general, this does not have
+  to be the case as there is no predetermined ordering of the codewords in the
+  associated codebook.)</li>
+</ul>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../methods/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Methods" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Methods
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../classification/" class="md-footer__link md-footer__link--next" aria-label="Next: Classification" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Classification
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
